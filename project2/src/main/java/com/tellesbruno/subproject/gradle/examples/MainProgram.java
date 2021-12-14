@@ -1,8 +1,5 @@
 package com.tellesbruno.subproject.gradle.examples;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class MainProgram {
     public static void main(String[] args) {
         InversionOfControl inversionOfControl = new InversionOfControl(new Adder());
