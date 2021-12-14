@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/persistence")
@@ -21,6 +20,14 @@ import java.util.Optional;
         return peopleDBService.getAllPeopleDB();
     }
 
+    @GetMapping("/people-db/{id}")
+    /*public PeopleDB getPeopleDB(@PathVariable Optional<Integer> id){
+        if(id.isPresent()){
+            return peopleDBService.getPeopleDB(id.get());
+        } else {
+            return peopleDBService.getPeopleDB(defaultId);
+        }
+    }*/
     public PeopleDB getPeopleDB(@PathVariable(value = "id"/*, required = false*/) int id){
         return peopleDBService.getPeopleDB(id);
     }
