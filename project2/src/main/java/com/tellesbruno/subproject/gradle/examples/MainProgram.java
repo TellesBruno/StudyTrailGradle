@@ -14,6 +14,5 @@ public class MainProgram {
         inversionOfControl.getAdder().add(1, 2);
         inversionOfControl.getAdder().add(3, 4);
         inversionOfControl.getAdder().add(5, 6);
-
     }
 }
