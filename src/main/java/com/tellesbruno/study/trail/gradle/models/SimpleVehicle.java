@@ -1,13 +1,16 @@
 package com.tellesbruno.study.trail.gradle.models;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@Builder @ToString @Getter @Setter
+
+//@SuperBuilder
+@Builder @ToString
 public class SimpleVehicle {
+    @Getter @NonNull
     private Integer year;
+    @Getter @Setter @NonNull
     private String color;
+    @Getter @Setter @NonNull
     private Double price;
 }

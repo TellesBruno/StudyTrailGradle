@@ -1,19 +1,38 @@
 package com.tellesbruno.study.trail.gradle.Others;
 
+import com.tellesbruno.study.trail.gradle.models.SimpleCar;
 import com.tellesbruno.study.trail.gradle.models.SimpleVehicle;
 import lombok.Synchronized;
 
 public class SpringLombok {
     static Integer count = 0;
 
-
     public static void main(String[] args) {
-        SimpleVehicle vehicle = SimpleVehicle.builder().year(2001).color("red").price(10000.00).build();
+        SimpleVehicle vehicle = SimpleVehicle.builder()
+                .year(2001)
+                .color("red")
+                .price(10000.00)
+                .build();
+
+        SimpleCar car = SimpleCar.carBuilder()
+                .model("ABC")
+                .plate("ABC1234")
+                .doors(4)
+                .year(2015)
+                .color("black")
+                .price(50000.00)
+                .build();
+
         System.out.println(vehicle);
-        vehicle.setYear(2002);
         System.out.println(vehicle);
+
+        System.out.println(car);
+
         vehicle.setColor("blue");
+
         System.out.println(vehicle.getColor());
+
+
 
         Thread thread1 = new Thread(threadIncrementer);
         Thread thread2 = new Thread(threadIncrementer2);
