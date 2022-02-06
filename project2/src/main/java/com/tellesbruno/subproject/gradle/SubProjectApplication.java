@@ -1,7 +1,7 @@
 package com.tellesbruno.subproject.gradle;
 
 
-import com.tellesbruno.subproject.gradle.examples.MySampleClass;
+
 import com.tellesbruno.subproject.gradle.examples.Runner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

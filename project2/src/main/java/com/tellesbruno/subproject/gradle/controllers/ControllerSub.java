@@ -13,18 +13,18 @@ public class ControllerSub {
     }
 
     @GetMapping("/requestparam")
-    public String requestID(@RequestParam(defaultValue = "default") String id) {
+    public String requestID(@RequestParam(defaultValue = "0") Integer id) {
         return "ID recebido: " + id;
     }
 
     @GetMapping("/optionalparam")
-    public String optionalID(@RequestParam(name = "id", required = false) String optid) {
+    public String optionalID(@RequestParam(name = "id", required = false) Integer optid) {
         return "ID recebido: " + optid;
     }
 
     @GetMapping("usingoptional")
-    public String usingOptional(@RequestParam Optional<String> id) {
-        return "ID recebido: " + id.orElse("Não foi recebido");
+    public String usingOptional(@RequestParam Optional<Integer> id) {
+        return "ID recebido: " + id.orElse(null);
     }
 
 }
