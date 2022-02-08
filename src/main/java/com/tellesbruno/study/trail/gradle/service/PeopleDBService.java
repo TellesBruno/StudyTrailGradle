@@ -28,7 +28,7 @@ public class PeopleDBService {
             return peopleDBRepository.findById(id).get();
         } catch (NoSuchElementException e) {
             throw new NotFoundExeption("PeopleDB " + id +" not found");
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             throw new BadRequestExeption("Bad Request");
         }
     }

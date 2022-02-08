@@ -21,14 +21,7 @@ import java.util.List;
     }
 
     @GetMapping("/people-db/{id}")
-    /*public PeopleDB getPeopleDB(@PathVariable Optional<Integer> id){
-        if(id.isPresent()){
-            return peopleDBService.getPeopleDB(id.get());
-        } else {
-            return peopleDBService.getPeopleDB(defaultId);
-        }
-    }*/
-    public PeopleDB getPeopleDB(@PathVariable(value = "id"/*, required = false*/) int id){
+    public PeopleDB getPeopleDB(@PathVariable(value = "id") int id){
         return peopleDBService.getPeopleDB(id);
     }
 
@@ -37,7 +30,7 @@ import java.util.List;
         peopleDBService.deletePeopleDB(id);
     }
 
-    @PostMapping()
+    @PostMapping("/people-db")
     public void addPeopleDB(@RequestBody PeopleDB peopleDB){
         peopleDBService.addPeopleDB(peopleDB);
     }
