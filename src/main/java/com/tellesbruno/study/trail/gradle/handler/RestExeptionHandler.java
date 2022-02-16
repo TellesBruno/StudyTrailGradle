@@ -2,56 +2,55 @@ package com.tellesbruno.study.trail.gradle.handler;
 
 
 
-import com.tellesbruno.study.trail.gradle.errors.BadRequestExeption;
-import com.tellesbruno.study.trail.gradle.errors.HttpExeptionCustom;
-import com.tellesbruno.study.trail.gradle.errors.InternalServerExeption;
-import com.tellesbruno.study.trail.gradle.errors.NotFoundExeption;
+import com.tellesbruno.study.trail.gradle.errors.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.util.Date;
 
 @RestControllerAdvice
-public class RestExeptionHandler {
-    @ExceptionHandler(NotFoundExeption.class)
-    public ResponseEntity<?> handleNotFound(NotFoundExeption exeption) {
-        HttpExeptionCustom nfCuston = HttpExeptionCustom.builder()
-                .title("Not Found")
-                .statusCode(HttpStatus.NOT_FOUND.value())
-                .detail(exeption.getMessage())
+public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
+    @ExceptionHandler(HttpRequestExeption.class)
+    public ResponseEntity<?> handleHttpRequestError(HttpRequestExeption exception) {
+        HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
+                .title(exception.getTitle())
+                .statusCode(exception.getStatusCode())
+                .detail(exception.getMessage())
                 .timestamp(new Date().getTime())
                 .developerMessage("O heandler de erro foi chamado")
                 .build();
 
-        return new ResponseEntity<>(nfCuston, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(hreCuston, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(BadRequestExeption.class)
-    public ResponseEntity<?> handleBadRequest(BadRequestExeption exeption) {
-        HttpExeptionCustom brCuston = HttpExeptionCustom.builder()
-                .title("Bad Request")
-                .statusCode(HttpStatus.BAD_REQUEST.value())
-                .detail(exeption.getMessage())
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ResponseEntity<?> HttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+        HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
+                .title("Method not supported")
+                .statusCode(HttpStatus.METHOD_NOT_ALLOWED.value())
+                .detail(exception.getMessage())
                 .timestamp(new Date().getTime())
                 .developerMessage("O heandler de erro foi chamado")
                 .build();
 
-        return new ResponseEntity<>(brCuston, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(hreCuston, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
-    @ExceptionHandler(InternalServerExeption.class)
-    public ResponseEntity<?> handleInternalServerError(InternalServerExeption exeption) {
-        HttpExeptionCustom iseCuston = HttpExeptionCustom.builder()
-                .title("Internal Server Error")
-                .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .detail(exeption.getMessage())
+    @ExceptionHandler
+    public ResponseEntity<?> HttpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
+        HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
+                .title("Media type not supported")
+                .statusCode(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value())
+                .detail(exception.getMessage())
                 .timestamp(new Date().getTime())
                 .developerMessage("O heandler de erro foi chamado")
                 .build();
 
-        return new ResponseEntity<>(iseCuston, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(hreCuston, HttpStatus.UNSUPPORTED_MEDIA_TYPE);
     }
-
 }
