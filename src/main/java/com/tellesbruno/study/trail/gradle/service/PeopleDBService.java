@@ -30,16 +30,20 @@ public class PeopleDBService {
         try {
             return peopleDBRepository.findById(id).get();
         } catch (NoSuchElementException e) {
-                throw new HttpRequestExeption(
-                        "Not Found",
-                        "PeopleDB " + id +" not found",
-                        HttpStatus.NOT_FOUND.value());
+            throw new HttpRequestExeption(
+                    "Not Found",
+                    "PeopleDB " + id +" not found",
+                    HttpStatus.NOT_FOUND.value());
         }
     }
 
     public ResponseEntity<?> addPeopleDB(PeopleDB peopleDB) {
         if (peopleDBRepository.findById(peopleDB.getId()).isEmpty()) {
-            peopleDBRepository.save(peopleDB);
+            try {
+                peopleDBRepository.save(peopleDB);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
             URI location = ServletUriComponentsBuilder
                     .fromCurrentRequest()
                     .path("/{id}")
@@ -56,10 +60,14 @@ public class PeopleDBService {
 
     public ResponseEntity<?> updatePeopleDB(int id, PeopleDB peopleDB) {
         if (peopleDB.getId() == id) {
-        if (peopleDBRepository.findById(id).isPresent()) {
-            peopleDBRepository.save(peopleDB);
-        } else {
-            throw new HttpRequestExeption(
+            if (peopleDBRepository.findById(id).isPresent()) {
+                try {
+                    peopleDBRepository.save(peopleDB);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                throw new HttpRequestExeption(
                     "Not Found",
                     "PeopleDB " + id +" not found",
                     HttpStatus.NOT_FOUND.value());

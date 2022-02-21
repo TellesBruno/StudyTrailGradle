@@ -48,5 +48,4 @@ import java.util.List;
     public ResponseEntity<?> login(@RequestBody LoginToken loginToken){
         return authService.login(loginToken);
     }
-
 }
