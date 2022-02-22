@@ -33,7 +33,7 @@ public class PeopleDBService {
             throw new HttpRequestExeption(
                     "Not Found",
                     "PeopleDB " + id +" not found",
-                    HttpStatus.NOT_FOUND.value());
+                    HttpStatus.NOT_FOUND);
         }
     }
 
@@ -54,7 +54,7 @@ public class PeopleDBService {
             throw new HttpRequestExeption(
                     "Bad Request",
                     "PeopleDB " + peopleDB.getId() +" already exist",
-                    HttpStatus.BAD_REQUEST.value());
+                    HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -70,12 +70,12 @@ public class PeopleDBService {
                 throw new HttpRequestExeption(
                     "Not Found",
                     "PeopleDB " + id +" not found",
-                    HttpStatus.NOT_FOUND.value());
+                    HttpStatus.NOT_FOUND);
         }} else {
             throw new HttpRequestExeption(
                     "Bad Request",
                     "PeopleDB ID" + peopleDB.getId() +" not match with ID" + id,
-                    HttpStatus.BAD_REQUEST.value());
+                    HttpStatus.BAD_REQUEST);
         }
         return ResponseEntity.noContent().build();
     }
@@ -89,7 +89,7 @@ public class PeopleDBService {
             throw new HttpRequestExeption(
                     "Not Found",
                     "PeopleDB " + id +" not found",
-                    HttpStatus.NOT_FOUND.value());
+                    HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok().body(deletedPeopleDB);
     }

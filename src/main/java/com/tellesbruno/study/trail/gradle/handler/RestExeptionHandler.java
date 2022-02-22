@@ -26,7 +26,7 @@ public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
                 .developerMessage("O heandler de erro foi chamado")
                 .build();
 
-        return new ResponseEntity<>(hreCuston, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(hreCuston, exception.getStatus());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)

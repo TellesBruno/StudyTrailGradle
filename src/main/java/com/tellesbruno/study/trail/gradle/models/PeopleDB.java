@@ -23,4 +23,7 @@ public class PeopleDB {
 
     @Column(length = 11, nullable = false)
     private String cpf;
+
+    @Column(length = 25, nullable = false)
+    private String password;
 }
