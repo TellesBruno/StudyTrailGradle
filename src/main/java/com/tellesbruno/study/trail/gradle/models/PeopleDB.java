@@ -1,5 +1,6 @@
 package com.tellesbruno.study.trail.gradle.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-@Getter @Setter @NoArgsConstructor
+@Getter @Setter @NoArgsConstructor @AllArgsConstructor
 public class PeopleDB {
 
     @Id
@@ -23,4 +24,7 @@ public class PeopleDB {
 
     @Column(length = 11, nullable = false)
     private String cpf;
+
+    @Column(length = 25, nullable = false)
+    private String password;
 }

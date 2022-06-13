@@ -16,9 +16,9 @@ public class AuthService {
             return ResponseEntity.ok("Login Successful");
         } else {
             throw new HttpRequestExeption(
-                    "Unautoorized",
+                    "Unauthorized",
                     "Wrong user name or password",
-                    HttpStatus.UNAUTHORIZED.value());
+                    HttpStatus.UNAUTHORIZED);
         }
     }
 }
