@@ -12,14 +12,14 @@ import java.util.List;
 public class SecondController {
     @GetMapping(path = "/people")
     public People printer(@RequestParam(name = "id", defaultValue = "0") int id){
-        PeopleData peopleData = new PeopleData();
+        var peopleData = new PeopleData();
         return peopleData.getPeopleList().get(id);
     }
 
     @GetMapping(path = "/test")
     public List<String> printer2(){
         List<String> test = new ArrayList<>();
-        for (int i = 0; i < 10; i++){
+        for (var i = 0; i < 10; i++){
             test.add("Valor "+i*2);
         }
         return test;
@@ -27,7 +27,7 @@ public class SecondController {
 
     @GetMapping(path = "/people/{id}")
     public People printer3(@PathVariable int id){
-        PeopleData peopleData = new PeopleData();
+        var peopleData = new PeopleData();
         People people = null;
             try {
                 people = peopleData.getPeopleList().get(id);

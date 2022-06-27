@@ -16,7 +16,7 @@ import java.util.Date;
 public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
     private static final String DEFAULT_MESSAGE = "O heandler de erro foi chamado";
     @ExceptionHandler(HttpRequestExeption.class)
-    public ResponseEntity<?> handleHttpRequestError(HttpRequestExeption exception) {
+    public ResponseEntity<HttpExeptionCustom> handleHttpRequestError(HttpRequestExeption exception) {
         HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
                 .title(exception.getTitle())
                 .statusCode(exception.getStatusCode())
@@ -29,7 +29,7 @@ public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<?> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
+    public ResponseEntity<HttpExeptionCustom> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException exception) {
         HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
                 .title("Method not supported")
                 .statusCode(HttpStatus.METHOD_NOT_ALLOWED.value())
@@ -42,7 +42,7 @@ public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)
-    public ResponseEntity<?> httpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
+    public ResponseEntity<HttpExeptionCustom> httpMediaTypeNotSupportedException(HttpMediaTypeNotSupportedException exception) {
         HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
                 .title("Media type not supported")
                 .statusCode(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value())
@@ -55,7 +55,7 @@ public class RestExeptionHandler extends DefaultHandlerExceptionResolver {
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public ResponseEntity<?> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
+    public ResponseEntity<HttpExeptionCustom> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException exception) {
         HttpExeptionCustom hreCuston = HttpExeptionCustom.builder()
                 .title("Method argument type mismatch")
                 .statusCode(HttpStatus.BAD_REQUEST.value())

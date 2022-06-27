@@ -1,10 +1,13 @@
-package com.tellesbruno.study.trail.gradle.Others;
+package com.tellesbruno.study.trail.gradle.others;
 
 import com.tellesbruno.study.trail.gradle.models.SimpleCar;
 import com.tellesbruno.study.trail.gradle.models.SimpleVehicle;
 import lombok.Synchronized;
 
+import java.util.logging.Logger;
+
 public class SpringLombok {
+    private static final Logger LOG = Logger.getLogger(SpringLombok.class.getName());
     static Integer count = 0;
 
     public static void main(String[] args) {
@@ -23,46 +26,51 @@ public class SpringLombok {
                 .price(50000.00)
                 .build();
 
-        System.out.println(vehicle);
-        System.out.println(vehicle);
+        var msg = vehicle.toString();
+        LOG.info(msg);
+        LOG.info(msg);
 
-        System.out.println(car);
+        msg = car.toString();
+        LOG.info(msg);
 
         vehicle.setColor("blue");
 
-        System.out.println(vehicle.getColor());
+        LOG.info(vehicle.getColor());
 
 
 
-        Thread thread1 = new Thread(threadIncrementer);
-        Thread thread2 = new Thread(threadIncrementer2);
+        var thread1 = new Thread(threadIncrementer);
+        var thread2 = new Thread(threadIncrementer2);
 
         thread1.start();
         thread2.start();
     }
 
     @Synchronized
-    public static void incrementer (String ThreadName) {
-        for (int i = 0; i < 10; i++) {
+    public static void incrementer (String threadName) {
+        for (var i = 0; i < 10; i++) {
             count++;
-            System.out.println(ThreadName + " " + count);
+            var msg = threadName + ": " + count;
+            LOG.info(msg);
         }
     }
 
 
-    public static Runnable threadIncrementer = () -> {
+    public static final Runnable threadIncrementer = () -> {
         try {
             incrementer("Thread 1:");
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            var msg = "Exception: " + e;
+            LOG.info(msg);
         }
     };
 
-    public static Runnable threadIncrementer2 = () -> {
+    public static final Runnable threadIncrementer2 = () -> {
         try {
             incrementer("Thread 2:");
         } catch (Exception e) {
-            System.out.println("Exception: " + e);
+            var msg = "Exception: " + e;
+            LOG.info(msg);
         }
     };
 }

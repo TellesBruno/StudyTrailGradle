@@ -9,7 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 @WebMvcTest(PeopleDBService.class)
-public class PeopleDBServiceTest {
+class PeopleDBServiceTest {
 
     @MockBean
     private PeopleDBService peopleDBService;
@@ -20,7 +20,7 @@ public class PeopleDBServiceTest {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldGetAllPeople() throws Exception {
+    void shouldGetAllPeople() throws Exception {
 
     }
 }

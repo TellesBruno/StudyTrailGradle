@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-    public ResponseEntity<?> login(LoginToken loginToken) {
-        String myUser = "User";
-        String myPassword = "Password";
+    public ResponseEntity<String> login(LoginToken loginToken) {
+        var myUser = "User";
+        var myPassword = "Password";
 
         if (loginToken.getUser().equals(myUser) && loginToken.getPassword().equals(myPassword)) {
             return ResponseEntity.ok("Login Successful");
